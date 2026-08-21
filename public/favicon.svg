@@ -11,5 +11,5 @@
     </style>
   </defs>
   <rect width="64" height="64" fill="#f7f3ea"/>
-  <text x="32" y="43" text-anchor="middle" font-size="26" fill="#1a1a1a">A<tspan fill="#6b2b2b" font-size="15">&amp;</tspan>G</text>
+  <text x="32" y="43" text-anchor="middle" font-size="27" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="0.6">A<tspan fill="#6b2b2b" stroke="#6b2b2b" font-size="16">&amp;</tspan>G</text>
 </svg>
