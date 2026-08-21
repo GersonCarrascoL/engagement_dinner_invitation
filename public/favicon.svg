@@ -11,6 +11,6 @@
       }
     </style>
   </defs>
-  <rect width="64" height="64" fill="#f7f3ea"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Pinyon Script Favicon, cursive" font-size="27" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="0.6">G<tspan font-family="Playfair Italic Favicon, serif" font-style="italic" fill="#6b2b2b" stroke="#6b2b2b" stroke-width="0.3" font-size="15">&amp;</tspan>A</text>
+  <circle cx="32" cy="32" r="32" fill="#f7f3ea"/>
+  <text x="28.8" y="43" text-anchor="middle" font-family="Pinyon Script Favicon, cursive" font-size="27" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="0.6">G<tspan font-family="Playfair Italic Favicon, serif" font-style="italic" fill="#6b2b2b" stroke="#6b2b2b" stroke-width="0.3" font-size="15">&amp;</tspan>A</text>
 </svg>
