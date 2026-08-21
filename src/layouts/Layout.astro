@@ -11,7 +11,6 @@ const { title = "Gerson & Anais — Nuestro compromiso" } = Astro.props;
 const withBase = (path: string) =>
   `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
 
-const youtubeVideoId = "jamgjQ-CTI8";
 ---
 
 <!doctype html>
@@ -93,12 +92,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
       </button>
     </div>
 
-    <div
-      id="yt-player"
-      class="fixed bottom-0 left-0 h-px w-px overflow-hidden opacity-0"
-      style="pointer-events: none;"
-    >
-    </div>
+    <audio id="bg-audio" src={withBase("audio/besame.mp3")} loop preload="auto"></audio>
 
     <div
       id="page-content"
@@ -107,7 +101,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
       <slot />
     </div>
 
-    <script define:vars={{ youtubeVideoId }}>
+    <script>
       document.body.classList.add("is-loaded");
 
       const revealItems = document.querySelectorAll("[data-reveal]");
@@ -142,9 +136,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
 
       document.body.style.overflow = "hidden";
 
-      let player = null;
-      let playerReady = false;
-      let pendingPlay = false;
+      const audio = document.getElementById("bg-audio");
 
       const setPlayingUI = (isPlaying) => {
         if (!playIcon || !pauseIcon) return;
@@ -161,52 +153,13 @@ const youtubeVideoId = "jamgjQ-CTI8";
         }
       };
 
-      let ytLoading = false;
-
-      const loadYouTube = () => {
-        if (ytLoading) return;
-        ytLoading = true;
-
-        window.onYouTubeIframeAPIReady = () => {
-          player = new YT.Player("yt-player", {
-            videoId: youtubeVideoId,
-            playerVars: {
-              playsinline: 1,
-              loop: 1,
-              playlist: youtubeVideoId,
-              start: 5,
-            },
-            events: {
-              onReady: () => {
-                playerReady = true;
-                if (pendingPlay) player.playVideo();
-              },
-              onStateChange: (event) => {
-                setPlayingUI(event.data === YT.PlayerState.PLAYING);
-                if (
-                  event.data === YT.PlayerState.PLAYING &&
-                  player.getCurrentTime() < 1
-                ) {
-                  player.seekTo(5, true);
-                }
-              },
-            },
-          });
-        };
-
-        const ytScript = document.createElement("script");
-        ytScript.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(ytScript);
-      };
+      audio?.addEventListener("play", () => setPlayingUI(true));
+      audio?.addEventListener("pause", () => setPlayingUI(false));
 
       const openCover = () => {
         coverButton.style.pointerEvents = "none";
         cover.style.opacity = "0";
-        if (playerReady) {
-          player.playVideo();
-        } else {
-          pendingPlay = true;
-        }
+        audio?.play();
         window.setTimeout(() => {
           cover.remove();
           document.body.style.overflow = "";
@@ -216,18 +169,12 @@ const youtubeVideoId = "jamgjQ-CTI8";
 
       coverButton?.addEventListener("click", openCover);
 
-      // Load the player in the background as soon as the page is up, so
-      // that on tap we only need to call playVideo() — Safari requires
-      // that call to happen within the same gesture, not after a fetch.
-      loadYouTube();
-
       musicToggle?.addEventListener("click", () => {
-        if (!playerReady) return;
-        const state = player.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-          player.pauseVideo();
+        if (!audio) return;
+        if (audio.paused) {
+          audio.play();
         } else {
-          player.playVideo();
+          audio.pause();
         }
       });
     </script>
