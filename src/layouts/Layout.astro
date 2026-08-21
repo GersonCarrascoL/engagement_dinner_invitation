@@ -114,6 +114,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
       const musicToggle = document.getElementById("music-toggle");
       const playIcon = document.getElementById("icon-play");
       const pauseIcon = document.getElementById("icon-pause");
+      const eqBars = document.querySelectorAll(".eq-bars");
 
       document.body.style.overflow = "hidden";
 
@@ -125,6 +126,9 @@ const youtubeVideoId = "jamgjQ-CTI8";
         if (!playIcon || !pauseIcon) return;
         playIcon.classList.toggle("hidden", isPlaying);
         pauseIcon.classList.toggle("hidden", !isPlaying);
+        eqBars.forEach((el) => {
+          el.style.opacity = isPlaying ? "1" : "0";
+        });
         if (musicToggle) {
           musicToggle.setAttribute(
             "aria-label",
