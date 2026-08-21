@@ -137,16 +137,51 @@ const youtubeVideoId = "jamgjQ-CTI8";
         }
       };
 
+      let ytLoading = false;
+
+      const loadYouTube = () => {
+        if (ytLoading) return;
+        ytLoading = true;
+
+        window.onYouTubeIframeAPIReady = () => {
+          player = new YT.Player("yt-player", {
+            videoId: youtubeVideoId,
+            playerVars: {
+              playsinline: 1,
+              loop: 1,
+              playlist: youtubeVideoId,
+              start: 5,
+            },
+            events: {
+              onReady: () => {
+                playerReady = true;
+                if (pendingPlay) player.playVideo();
+              },
+              onStateChange: (event) => {
+                setPlayingUI(event.data === YT.PlayerState.PLAYING);
+                if (
+                  event.data === YT.PlayerState.PLAYING &&
+                  player.getCurrentTime() < 1
+                ) {
+                  player.seekTo(5, true);
+                }
+              },
+            },
+          });
+        };
+
+        const ytScript = document.createElement("script");
+        ytScript.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(ytScript);
+      };
+
       const openCover = () => {
         coverButton.style.pointerEvents = "none";
         coverLeft.style.transform = "rotateY(-100deg)";
         coverRight.style.transform = "rotateY(100deg)";
         document.body.style.overflow = "";
-        if (playerReady) {
-          player.playVideo();
-        } else {
-          pendingPlay = true;
-        }
+        pendingPlay = true;
+        loadYouTube();
         window.setTimeout(() => cover.remove(), 1100);
       };
 
@@ -161,37 +196,6 @@ const youtubeVideoId = "jamgjQ-CTI8";
           player.playVideo();
         }
       });
-
-      window.onYouTubeIframeAPIReady = () => {
-        player = new YT.Player("yt-player", {
-          videoId: youtubeVideoId,
-          playerVars: {
-            playsinline: 1,
-            loop: 1,
-            playlist: youtubeVideoId,
-            start: 5,
-          },
-          events: {
-            onReady: () => {
-              playerReady = true;
-              if (pendingPlay) player.playVideo();
-            },
-            onStateChange: (event) => {
-              setPlayingUI(event.data === YT.PlayerState.PLAYING);
-              if (
-                event.data === YT.PlayerState.PLAYING &&
-                player.getCurrentTime() < 1
-              ) {
-                player.seekTo(5, true);
-              }
-            },
-          },
-        });
-      };
-
-      const ytScript = document.createElement("script");
-      ytScript.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(ytScript);
     </script>
   </body>
 </html>
