@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 
-const { title = "Anais & Gerson — Nuestro compromiso" } = Astro.props;
+const { title = "Gerson & Anais — Nuestro compromiso" } = Astro.props;
 
 const withBase = (path: string) =>
   `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
@@ -19,8 +19,18 @@ const youtubeVideoId = "jamgjQ-CTI8";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href={withBase("favicon-32.png")} />
-    <link rel="icon" type="image/png" sizes="180x180" href={withBase("favicon-180.png")} />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href={withBase("favicon-32.png")}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="180x180"
+      href={withBase("favicon-180.png")}
+    />
     <link rel="apple-touch-icon" href={withBase("favicon-180.png")} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -67,10 +77,16 @@ const youtubeVideoId = "jamgjQ-CTI8";
         class="flex flex-col items-center gap-6 px-6 text-center"
         aria-label="Abrir la invitación y reproducir la canción"
       >
-        <span class="font-script inline-block -translate-x-[0.12em] text-5xl text-ink md:text-6xl">
-          G <span class="font-serif text-3xl text-accent italic md:text-4xl">&amp;</span> A
+        <span
+          class="font-script inline-block -translate-x-[0.12em] text-5xl text-ink md:text-6xl"
+        >
+          G <span class="font-serif text-3xl text-accent italic md:text-4xl"
+            >&amp;</span
+          > A
         </span>
-        <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
+        <span
+          class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm"
+        >
           Toca para abrir tu invitación
         </span>
         <HeartIcon size={30} />
@@ -81,9 +97,13 @@ const youtubeVideoId = "jamgjQ-CTI8";
       id="yt-player"
       class="fixed bottom-0 left-0 h-px w-px overflow-hidden opacity-0"
       style="pointer-events: none;"
-    ></div>
+    >
+    </div>
 
-    <div id="page-content" class="opacity-0 transition-opacity duration-700 ease-in-out">
+    <div
+      id="page-content"
+      class="opacity-0 transition-opacity duration-700 ease-in-out"
+    >
       <slot />
     </div>
 
