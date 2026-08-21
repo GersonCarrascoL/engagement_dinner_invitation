@@ -178,8 +178,11 @@ const youtubeVideoId = "jamgjQ-CTI8";
       const openCover = () => {
         coverButton.style.pointerEvents = "none";
         cover.style.opacity = "0";
-        pendingPlay = true;
-        loadYouTube();
+        if (playerReady) {
+          player.playVideo();
+        } else {
+          pendingPlay = true;
+        }
         window.setTimeout(() => {
           cover.remove();
           document.body.style.overflow = "";
@@ -188,6 +191,11 @@ const youtubeVideoId = "jamgjQ-CTI8";
       };
 
       coverButton?.addEventListener("click", openCover);
+
+      // Load the player in the background as soon as the page is up, so
+      // that on tap we only need to call playVideo() — Safari requires
+      // that call to happen within the same gesture, not after a fetch.
+      loadYouTube();
 
       musicToggle?.addEventListener("click", () => {
         if (!playerReady) return;
