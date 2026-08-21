@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import HeartIcon from "../components/HeartIcon.astro";
 
 interface Props {
   title?: string;
@@ -9,6 +10,8 @@ const { title = "Anais & Gerson — Nuestro compromiso" } = Astro.props;
 
 const withBase = (path: string) =>
   `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
+
+const youtubeVideoId = "jamgjQ-CTI8";
 ---
 
 <!doctype html>
@@ -30,8 +33,31 @@ const withBase = (path: string) =>
     />
   </head>
   <body class="bg-paper">
+    <div
+      id="cover"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-paper transition-opacity duration-700"
+    >
+      <button
+        id="cover-button"
+        type="button"
+        class="flex flex-col items-center gap-6 px-6 text-center"
+        aria-label="Abrir la invitación y reproducir la canción"
+      >
+        <span class="font-script text-5xl text-ink md:text-6xl">
+          G <span class="font-serif text-3xl text-accent italic md:text-4xl">&amp;</span> A
+        </span>
+        <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
+          Toca para abrir tu invitación
+        </span>
+        <HeartIcon size={16} />
+      </button>
+    </div>
+
+    <div id="yt-player" class="hidden"></div>
+
     <slot />
-    <script>
+
+    <script define:vars={{ youtubeVideoId }}>
       const revealItems = document.querySelectorAll("[data-reveal]");
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -53,6 +79,78 @@ const withBase = (path: string) =>
         );
         revealItems.forEach((el) => observer.observe(el));
       }
+
+      const cover = document.getElementById("cover");
+      const coverButton = document.getElementById("cover-button");
+      const musicToggle = document.getElementById("music-toggle");
+      const playIcon = document.getElementById("icon-play");
+      const pauseIcon = document.getElementById("icon-pause");
+
+      document.body.style.overflow = "hidden";
+
+      let player = null;
+      let playerReady = false;
+      let pendingPlay = false;
+
+      const setPlayingUI = (isPlaying) => {
+        if (!playIcon || !pauseIcon) return;
+        playIcon.classList.toggle("hidden", isPlaying);
+        pauseIcon.classList.toggle("hidden", !isPlaying);
+        if (musicToggle) {
+          musicToggle.setAttribute(
+            "aria-label",
+            isPlaying ? "Pausar canción" : "Reproducir canción",
+          );
+        }
+      };
+
+      const openCover = () => {
+        cover.style.opacity = "0";
+        cover.style.pointerEvents = "none";
+        document.body.style.overflow = "";
+        if (playerReady) {
+          player.playVideo();
+        } else {
+          pendingPlay = true;
+        }
+        window.setTimeout(() => cover.remove(), 700);
+      };
+
+      coverButton?.addEventListener("click", openCover);
+
+      musicToggle?.addEventListener("click", () => {
+        if (!playerReady) return;
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
+      });
+
+      window.onYouTubeIframeAPIReady = () => {
+        player = new YT.Player("yt-player", {
+          videoId: youtubeVideoId,
+          playerVars: {
+            playsinline: 1,
+            loop: 1,
+            playlist: youtubeVideoId,
+          },
+          events: {
+            onReady: () => {
+              playerReady = true;
+              if (pendingPlay) player.playVideo();
+            },
+            onStateChange: (event) => {
+              setPlayingUI(event.data === YT.PlayerState.PLAYING);
+            },
+          },
+        });
+      };
+
+      const ytScript = document.createElement("script");
+      ytScript.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(ytScript);
     </script>
   </body>
 </html>

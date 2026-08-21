@@ -80,6 +80,21 @@ const mapsUrl = `https://maps.app.goo.gl/kpkVMsmqLgGYLS7L6`;
           </div>
 
           <div data-reveal>
+            <div class="mb-5 flex justify-center">
+              <button
+                id="music-toggle"
+                type="button"
+                aria-label="Reproducir canción"
+                class="flex h-12 w-12 items-center justify-center rounded-full border border-ink text-ink transition-colors hover:bg-ink hover:text-paper"
+              >
+                <svg id="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"></path>
+                </svg>
+                <svg id="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="hidden">
+                  <path d="M7 5h4v14H7zM13 5h4v14h-4z"></path>
+                </svg>
+              </button>
+            </div>
             <ScriptDivider label="Fecha" class="mb-3" />
             <div
               class="flex items-center justify-center rounded-md bg-[#4a4a4a] px-5 py-8 md:rounded-md md:py-10"
