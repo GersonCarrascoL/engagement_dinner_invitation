@@ -77,7 +77,11 @@ const youtubeVideoId = "jamgjQ-CTI8";
       </button>
     </div>
 
-    <div id="yt-player" class="hidden"></div>
+    <div
+      id="yt-player"
+      class="fixed bottom-0 left-0 h-px w-px overflow-hidden opacity-0"
+      style="pointer-events: none;"
+    ></div>
 
     <div id="page-content" class="opacity-0 transition-opacity duration-700 ease-in-out">
       <slot />
