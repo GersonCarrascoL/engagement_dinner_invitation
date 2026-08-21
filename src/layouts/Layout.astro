@@ -59,58 +59,29 @@ const youtubeVideoId = "jamgjQ-CTI8";
   <body class="bg-paper">
     <div
       id="cover"
-      class="fixed inset-0 z-50 overflow-hidden bg-paper"
-      style="perspective: 1600px;"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-paper transition-opacity duration-700 ease-in-out"
     >
-      <div
-        id="cover-left"
-        class="absolute inset-y-0 left-0 w-1/2 overflow-hidden bg-paper shadow-[inset_-10px_0_16px_-10px_rgba(0,0,0,0.3)] transition-transform duration-[1100ms] ease-in-out"
-        style="transform-origin: left center; backface-visibility: hidden;"
-      >
-        <div
-          class="absolute inset-y-0 left-0 flex w-screen flex-col items-center justify-center gap-6 px-6 text-center"
-          aria-hidden="true"
-        >
-          <span class="font-script text-5xl text-ink md:text-6xl">
-            G <span class="font-serif text-3xl text-accent italic md:text-4xl">&amp;</span> A
-          </span>
-          <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
-            Toca para abrir tu invitación
-          </span>
-          <HeartIcon size={30} />
-        </div>
-      </div>
-
-      <div
-        id="cover-right"
-        class="absolute inset-y-0 right-0 w-1/2 overflow-hidden bg-paper shadow-[inset_10px_0_16px_-10px_rgba(0,0,0,0.3)] transition-transform duration-[1100ms] ease-in-out"
-        style="transform-origin: right center; backface-visibility: hidden;"
-      >
-        <div
-          class="absolute inset-y-0 right-0 flex w-screen flex-col items-center justify-center gap-6 px-6 text-center"
-          aria-hidden="true"
-        >
-          <span class="font-script text-5xl text-ink md:text-6xl">
-            G <span class="font-serif text-3xl text-accent italic md:text-4xl">&amp;</span> A
-          </span>
-          <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
-            Toca para abrir tu invitación
-          </span>
-          <HeartIcon size={30} />
-        </div>
-      </div>
-
       <button
         id="cover-button"
         type="button"
-        class="absolute inset-0 z-10"
+        class="flex flex-col items-center gap-6 px-6 text-center"
         aria-label="Abrir la invitación y reproducir la canción"
-      ></button>
+      >
+        <span class="font-script text-5xl text-ink md:text-6xl">
+          G <span class="font-serif text-3xl text-accent italic md:text-4xl">&amp;</span> A
+        </span>
+        <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
+          Toca para abrir tu invitación
+        </span>
+        <HeartIcon size={30} />
+      </button>
     </div>
 
     <div id="yt-player" class="hidden"></div>
 
-    <slot />
+    <div id="page-content" class="opacity-0 transition-opacity duration-700 ease-in-out">
+      <slot />
+    </div>
 
     <script define:vars={{ youtubeVideoId }}>
       document.body.classList.add("is-loaded");
@@ -138,8 +109,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
       }
 
       const cover = document.getElementById("cover");
-      const coverLeft = document.getElementById("cover-left");
-      const coverRight = document.getElementById("cover-right");
+      const pageContent = document.getElementById("page-content");
       const coverButton = document.getElementById("cover-button");
       const musicToggle = document.getElementById("music-toggle");
       const playIcon = document.getElementById("icon-play");
@@ -203,12 +173,14 @@ const youtubeVideoId = "jamgjQ-CTI8";
 
       const openCover = () => {
         coverButton.style.pointerEvents = "none";
-        coverLeft.style.transform = "rotateY(-100deg)";
-        coverRight.style.transform = "rotateY(100deg)";
-        document.body.style.overflow = "";
+        cover.style.opacity = "0";
         pendingPlay = true;
         loadYouTube();
-        window.setTimeout(() => cover.remove(), 1100);
+        window.setTimeout(() => {
+          cover.remove();
+          document.body.style.overflow = "";
+          pageContent.style.opacity = "1";
+        }, 700);
       };
 
       coverButton?.addEventListener("click", openCover);
