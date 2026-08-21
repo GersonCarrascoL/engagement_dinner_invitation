@@ -7,7 +7,7 @@
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700&family=Pinyon+Script&display=swap">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; }
@@ -15,10 +15,9 @@
 </helmet>
 
 <div style="width:480px; height:480px; display:flex; align-items:center; justify-content:center; background:transparent;">
-  <div style="display:flex; align-items:baseline; font-family:'Pinyon Script', cursive; font-size:168px; color:#1a1a1a; line-height:1;">
-    <span>G</span>
-    <span style="font-family:'Playfair Display', serif; font-style:italic; font-size:64px; color:{{accent}}; margin:0 4px; align-self:center;">&amp;</span>
-    <span>A</span>
+  <div style="position:relative; width:320px; height:220px;">
+    <span style="position:absolute; left:0; top:0; font-family:'Playfair Display', serif; font-weight:700; font-size:200px; color:#1a1a1a; line-height:1;">G</span>
+    <span style="position:absolute; right:0; bottom:6px; font-family:'Pinyon Script', cursive; font-size:170px; color:{{accent}}; line-height:1;">A</span>
   </div>
 </div>
 </x-dc>
