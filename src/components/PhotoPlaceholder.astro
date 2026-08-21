@@ -1,0 +1,29 @@
+---
+interface Props {
+  class?: string;
+  iconSize?: number;
+}
+
+const { class: className = "", iconSize = 46 } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col items-center justify-center gap-3 border border-[#c9c0a8] bg-[repeating-linear-gradient(135deg,#e3ddcd,#e3ddcd_10px,#ddd6c3_10px,#ddd6c3_20px)]",
+    className,
+  ]}
+>
+  <svg
+    width={iconSize}
+    height={iconSize}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#8c8368"
+    stroke-width="1.4"
+  >
+    <rect x="2.5" y="6.5" width="19" height="13" rx="2"></rect>
+    <circle cx="12" cy="13" r="3.6"></circle>
+    <path d="M8 6.5l1.4-2h5.2l1.4 2"></path>
+  </svg>
+  <span class="font-serif text-xs italic text-[#8c8368]">Foto de la pareja</span>
+</div>

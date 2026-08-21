@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-script: "Pinyon Script", cursive, "Brush Script MT", cursive;
+  --font-gothic: "UnifrakturMaguntia", "Old English Text MT", serif;
+
+  --color-paper: #f7f3ea;
+  --color-ink: #1a1a1a;
+  --color-accent: #6b2b2b;
+}

@@ -1,17 +1,140 @@
 ---
+import HeartIcon from "../components/HeartIcon.astro";
+import Masthead from "../components/Masthead.astro";
+import PhotoPlaceholder from "../components/PhotoPlaceholder.astro";
+import ScriptDivider from "../components/ScriptDivider.astro";
+import Layout from "../layouts/Layout.astro";
 
+const address = "Asociación Perpetuo Socorro, Mz A Lote H, Ate, Lima, Perú";
+const mapsUrl = `https://maps.app.goo.gl/kpkVMsmqLgGYLS7L6`;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <main class="mx-auto max-w-[1440px] bg-paper">
+    <!-- <div class="px-4 pt-6 md:px-12 md:pt-10 lg:px-[90px] lg:pt-12">
+      <div class="border-t-2 border-ink md:border-t-[3px]"></div>
+      <div class="mt-1 border-t border-ink"></div>
+    </div> -->
+
+    <Masthead
+      names={"Anais Aponte &\nGerson Carrasco"}
+      eventLabel={"Noticia de\núltima hora"}
+      date={"Domingo\n30 Agosto, 2026"}
+    />
+
+    <div class="px-4 md:px-12 lg:px-[90px]">
+      <div class="border-t-2 border-ink md:border-t-[3px]"></div>
+      <div class="mt-1 border-t border-ink"></div>
+    </div>
+
+    <h1
+      class="text-balance px-4 py-6 text-center font-display text-[38px] leading-[1.08] text-ink md:px-12 md:py-8 md:text-6xl lg:px-[90px] lg:py-9 lg:text-8xl"
+    >
+      ANAIS DIJO S&Iacute; A GERSON
+    </h1>
+
+    <div class="px-4 pb-8 md:px-12 md:pb-10 lg:px-[90px] lg:pb-12">
+      <div class="border-t-2 border-ink md:border-t-[3px]"></div>
+      <div class="mt-1 border-t border-ink"></div>
+    </div>
+
+    <div class="px-4 pb-8 md:px-12 md:pb-10 lg:px-[90px] lg:pb-14">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:items-stretch lg:gap-12">
+        <PhotoPlaceholder
+          class="mb-8 h-[300px] md:mb-10 md:h-[380px] lg:mb-0 lg:h-full"
+        />
+
+        <div
+          class="mx-auto flex max-w-[640px] flex-col gap-8 md:gap-10 lg:mx-0 lg:max-w-none lg:gap-8"
+        >
+          <div>
+            <div class="border-t-2 border-ink md:border-t-[3px]"></div>
+            <div class="mt-1 border-t border-ink"></div>
+            <div class="flex items-center justify-center gap-2 py-4 md:gap-2.5 md:py-5">
+              <HeartIcon class="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+              <HeartIcon class="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+              <span
+                class="mx-2 font-serif text-base font-bold tracking-[0.1em] text-ink uppercase whitespace-nowrap md:text-xl lg:text-2xl"
+              >
+                Nuestro compromiso
+              </span>
+              <HeartIcon class="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+              <HeartIcon class="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+            </div>
+            <div class="border-t-2 border-ink md:border-t-[3px]"></div>
+            <div class="mt-1 border-t border-ink"></div>
+          </div>
+
+          <div class="border-[1.5px] border-ink px-5 py-6 md:px-8 md:py-8">
+            <p
+              class="text-center font-serif text-[14.5px] leading-[1.7] text-ink/90 italic md:text-lg md:leading-[1.8]"
+            >
+              &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+              ut enim ad minim veniam, quis nostrud exercitation ullamco.&rdquo;
+            </p>
+          </div>
+
+          <div>
+            <ScriptDivider label="Fecha" class="mb-3" />
+            <div class="flex items-center justify-center bg-ink px-5 py-5">
+              <span
+                class="font-display text-3xl tracking-[0.1em] text-paper md:text-4xl"
+              >
+                30 / 08 / 26
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <ScriptDivider label="Dirección" class="mb-3" />
+            <div class="text-center">
+              <p
+                class="mb-2 font-serif text-base font-bold text-ink italic md:text-xl"
+              >
+                Hora 6:00 pm
+              </p>
+              <p
+                class="font-serif text-sm leading-relaxed text-ink/90 italic md:text-lg"
+              >
+                Asociaci&oacute;n Perpetuo Socorro<br />Mz A Lote H &mdash; Ate
+              </p>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex items-center gap-2 bg-accent px-6 py-3 text-paper transition-colors hover:bg-[#4a1c1c]"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                >
+                  <path
+                    d="M12 21s7-6.1 7-11.3A7 7 0 0 0 5 9.7C5 14.9 12 21 12 21z"
+                  ></path>
+                  <circle cx="12" cy="9.5" r="2.3"></circle>
+                </svg>
+                <span
+                  class="font-serif text-xs tracking-wider uppercase md:text-sm"
+                  >Ver mapa</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-4 pb-8 md:px-12 md:pb-10 lg:px-[90px] lg:pb-12">
+      <PhotoPlaceholder class="h-[300px] md:h-[380px]" />
+    </div>
+
+    <div class="px-4 pb-10 md:px-12 md:pb-14 lg:px-[90px] lg:pb-16">
+      <ScriptDivider label="¡Te esperamos!" />
+    </div>
+  </main>
+</Layout>

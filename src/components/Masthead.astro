@@ -1,0 +1,29 @@
+---
+interface Props {
+  names: string;
+  eventLabel: string;
+  date: string;
+}
+
+const { names, eventLabel, date } = Astro.props;
+---
+
+<div
+  class="flex items-center justify-between px-4 pt-3 pb-3 md:px-12 md:pt-5 md:pb-5 lg:px-[90px] lg:pt-6 lg:pb-6"
+>
+  <p
+    class="font-serif text-[11px] leading-snug tracking-wide text-ink whitespace-pre-line max-w-[90px] md:max-w-[150px] md:text-[13px] lg:max-w-[220px] lg:text-[15px]"
+  >
+    {names}
+  </p>
+  <p
+    class="border-x border-ink px-3 text-center font-gothic text-2xl leading-tight text-ink md:px-7 md:text-4xl lg:px-9 lg:text-5xl"
+  >
+    {eventLabel}
+  </p>
+  <p
+    class="font-serif text-[11px] leading-snug text-ink whitespace-pre-line max-w-[96px] text-center md:max-w-[160px] md:text-[13px] lg:max-w-[230px] lg:text-[15px]"
+  >
+    {date}
+  </p>
+</div>
