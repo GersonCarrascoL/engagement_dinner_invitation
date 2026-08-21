@@ -49,7 +49,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
         <span class="border-t border-ink pt-4 font-serif text-xs tracking-[0.2em] text-ink uppercase md:text-sm">
           Toca para abrir tu invitación
         </span>
-        <HeartIcon size={16} />
+        <HeartIcon size={30} />
       </button>
     </div>
 
@@ -135,6 +135,7 @@ const youtubeVideoId = "jamgjQ-CTI8";
             playsinline: 1,
             loop: 1,
             playlist: youtubeVideoId,
+            start: 5,
           },
           events: {
             onReady: () => {
@@ -143,6 +144,12 @@ const youtubeVideoId = "jamgjQ-CTI8";
             },
             onStateChange: (event) => {
               setPlayingUI(event.data === YT.PlayerState.PLAYING);
+              if (
+                event.data === YT.PlayerState.PLAYING &&
+                player.getCurrentTime() < 1
+              ) {
+                player.seekTo(5, true);
+              }
             },
           },
         });
