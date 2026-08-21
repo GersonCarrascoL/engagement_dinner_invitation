@@ -2,12 +2,14 @@
 interface Props {
   class?: string;
   iconSize?: number;
+  "data-reveal"?: boolean;
 }
 
-const { class: className = "", iconSize = 46 } = Astro.props;
+const { class: className = "", iconSize = 46, ...rest } = Astro.props;
 ---
 
 <div
+  {...rest}
   class:list={[
     "flex flex-col items-center justify-center gap-3 border border-[#c9c0a8] bg-[repeating-linear-gradient(135deg,#e3ddcd,#e3ddcd_10px,#ddd6c3_10px,#ddd6c3_20px)]",
     className,

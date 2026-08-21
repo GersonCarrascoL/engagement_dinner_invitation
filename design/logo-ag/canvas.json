@@ -1,13 +1,10 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 480, "h": 480, "title": "Sello circular" },
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 480, "h": 480, "title": "Sin marco" },
     { "file": "Script.dc.html", "x": 560, "y": 0, "w": 480, "h": 480, "title": "Script entrelazado" },
     { "file": "Bold.dc.html", "x": 1120, "y": 0, "w": 480, "h": 480, "title": "Bold gráfico" },
-    { "file": "Overlap.dc.html", "x": 1680, "y": 0, "w": 480, "h": 480, "title": "Iniciales superpuestas" },
-    { "file": "Heart.dc.html", "x": 2240, "y": 0, "w": 480, "h": 480, "title": "Con corazón" },
-    { "file": "Monsieur.dc.html", "x": 0, "y": 560, "w": 480, "h": 480, "title": "Caligrafía romántica" },
-    { "file": "Luxurious.dc.html", "x": 560, "y": 560, "w": 480, "h": 480, "title": "Script lujoso" },
-    { "file": "Minimal.dc.html", "x": 1120, "y": 560, "w": 480, "h": 480, "title": "Minimal con caps" }
+    { "file": "Heart.dc.html", "x": 1680, "y": 0, "w": 480, "h": 480, "title": "Con corazón" },
+    { "file": "Minimal.dc.html", "x": 2240, "y": 0, "w": 480, "h": 480, "title": "Minimal con caps" }
   ],
   "launch": { "view": "canvas" }
 }
